@@ -23,7 +23,7 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
-        hasWon = false;
+        hasWon = false; // hasWon updates to true when player reaches the water
 
     canvas.width = 505;
     canvas.height = 606;
@@ -100,11 +100,11 @@ var Engine = (function(global) {
       });
     }
 
-    function checkWin(player) {
+    function checkWin(player) { // checks to see if player has reached the water (depends on y position)
       if (player.y<35) {
         console.log('true');
         hasWon = true;
-        doc.getElementById('winMessage').classList.toggle('hidden');
+        doc.getElementById('winMessage').classList.toggle('hidden'); // make the win message and play again button visible
       }
     }
 
@@ -188,7 +188,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-      allEnemies = [new Enemy(1, 'slow'), new Enemy(2, 'medium'), new Enemy(3, 'fast')];
+      allEnemies = [new Enemy(1, 'slow'), new Enemy(2, 'medium'), new Enemy(3, 'fast')]; // if you change these you will also have to change in reset() method
       player = new Player();
     }
 

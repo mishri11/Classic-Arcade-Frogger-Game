@@ -1,14 +1,9 @@
 // Enemies our player must avoid
 function Enemy(rowNumber, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.rowNumber = rowNumber;
-    this.sprite = 'images/enemy-bug.png';
-    this.x = -10;
-    if (rowNumber===1) {
+    this.rowNumber = rowNumber; // which of 3 rows enemy will appear on
+    this.sprite = 'images/enemy-bug.png'; // enemy picture
+    this.x = -10; // enemy starting x position
+    if (rowNumber===1) { // enemy starting y position determined by row number
       this.y = 60;
     } else if (rowNumber===2) {
       this.y = 145;
@@ -16,53 +11,41 @@ function Enemy(rowNumber, speed) {
       this.y = 230;
     }
 
-    if (speed === 'slow') {
+    if (speed === 'slow') { // enemy speed
       this.speed = 60;
     } else if (speed === 'medium') {
       this.speed = 100;
     } else if (speed === 'fast') {
       this.speed = 130;
     }
-      // canvas.width = 505;
-      // canvas.height = 606;
-      // numRows = 6,
-      // numCols = 5,
-      // width of each block = 505/5 = 101
-      // height of each block = 606/6 = 101
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
+    // Multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    // so you have some time elapsed dt
-    // you have initial x position - this.x
-    // you have the enemy's speed in px/ms
-    // new x position will be current position + speed*dt
-    this.x = this.x + (this.speed*dt);
-    if (this.x>500) {
+    this.x = this.x + (this.speed*dt); // new position depends on dt (time elapsed) and speed
+    if (this.x>500) { // if new position takes enemy off screen reset their position so they come back onto screen
       this.x = -10;
     }
 };
 
-// Draw the enemy on the screen, required method for game
+// Draw the enemy on the screen
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Player class
 function Player() {
-   this.sprite = 'images/char-boy.png';
-   this.x = 202;
+   this.sprite = 'images/char-boy.png'; // player image file
+   this.x = 202; // player starting x and y positions
    this.y = 320;
  };
 
  Player.prototype.update = function(collision) {
-   if (collision) {
+   if (collision) { // if there's a collision (boolean value) reset player to start position
      this.x = 202;
      this.y = 320;
    }
@@ -73,11 +56,11 @@ function Player() {
  };
 
  Player.prototype.handleInput = function(key) {
-   let topEdge = this.y <=10;
+   let topEdge = this.y <=10; // these logical statements are just checking to see if player is on an edge
    let rightEdge = this.x===404;
    let bottomEdge = this.y>=400;
    let leftEdge = this.x===0;
-   if (key==='left' && !leftEdge) {
+   if (key==='left' && !leftEdge) { // only update player locations on keypress if player not on an edge
        this.x = this.x - 101;
    } else if (key==='right' && !rightEdge) {
      this.x = this.x + 101;
@@ -89,14 +72,14 @@ function Player() {
  };
 
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
+// Instantiate your objects.
+// Place all enemy objects in an array called allEnemies - you can add enemies to this
 // Place the player object in a variable called player
 let allEnemies = [new Enemy(1, 'slow'), new Enemy(2, 'medium'), new Enemy(3, 'fast')];
 let player = new Player();
 
 // This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// Player.handleInput() method.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
