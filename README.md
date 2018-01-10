@@ -1,6 +1,11 @@
-frontend-nanodegree-arcade-game
-===============================
+# Introduction
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+This is an application I created in the course of my Udacity Front End Nanodegree. Udacity provided the basic game engine (which just renders images on a canvas repeatedly) and it was up to me to write the code for the elements of the game (the enemies, the player, etc.).
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+# How to Run the Application
+
+To run the application, just download this repository, unzip, and just open index.html in your favorite browser!
+
+# How to Play
+
+Your goal is to move the player to the other side (to the water) by using the up, down, left, and right keys. Whenever you hit an enemy bug, the player will get moved back to the start position and begin again.
