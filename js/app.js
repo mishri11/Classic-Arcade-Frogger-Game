@@ -75,7 +75,7 @@ function Player() {
 // Instantiate your objects.
 // Place all enemy objects in an array called allEnemies - you can add enemies to this
 // Place the player object in a variable called player
-let allEnemies = [new Enemy(1, 'slow'), new Enemy(2, 'medium'), new Enemy(3, 'fast')];
+allEnemies = [new Enemy(1, 'slow'), new Enemy(1, 'fast'), new Enemy(2, 'medium'), new Enemy(2, 'slow'), new Enemy(3, 'fast'), new Enemy(3, 'slow')]; // if you change these you will also have to change in reset() method
 let player = new Player();
 
 // This listens for key presses and sends the keys to your

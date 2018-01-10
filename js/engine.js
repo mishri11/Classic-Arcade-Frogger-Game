@@ -188,7 +188,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-      allEnemies = [new Enemy(1, 'slow'), new Enemy(2, 'medium'), new Enemy(3, 'fast')]; // if you change these you will also have to change in reset() method
+      allEnemies = [new Enemy(1, 'slow'), new Enemy(1, 'fast'), new Enemy(2, 'medium'), new Enemy(2, 'slow'), new Enemy(3, 'fast'), new Enemy(3, 'slow')];
       player = new Player();
     }
 
