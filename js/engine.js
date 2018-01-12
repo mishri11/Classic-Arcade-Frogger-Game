@@ -71,7 +71,7 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        reset();
+        gameReset();
         lastTime = Date.now();
         main();
     }
@@ -88,7 +88,10 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         player.checkCollisions(allEnemies);
-        checkWin(player);
+        if (player.checkWin()) {
+          hasWon = true;
+          doc.getElementById('winMessage').classList.toggle('hidden'); // make the win message and play again button visible
+        }
     }
 
     // function checkCollisions(allEnemies, player) {
@@ -100,13 +103,13 @@ var Engine = (function(global) {
     //   });
     // }
 
-    function checkWin(player) { // checks to see if player has reached the water (depends on y position)
-      if (player.y<35) {
-        console.log('true');
-        hasWon = true;
-        doc.getElementById('winMessage').classList.toggle('hidden'); // make the win message and play again button visible
-      }
-    }
+    // function checkWin(player) { // checks to see if player has reached the water (depends on y position)
+    //   if (player.y<35) {
+    //     console.log('true');
+    //     hasWon = true;
+    //     doc.getElementById('winMessage').classList.toggle('hidden'); // make the win message and play again button visible
+    //   }
+    // }
 
 
 
@@ -121,7 +124,6 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        // player.update(false);
     }
 
     /* This function initially draws the "game level", it will then call
@@ -187,7 +189,7 @@ var Engine = (function(global) {
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-    function reset() {
+    function gameReset() {
       allEnemies = [new Enemy(1, 'slow'), new Enemy(1, 'fast'), new Enemy(2, 'medium'), new Enemy(2, 'slow'), new Enemy(3, 'fast'), new Enemy(3, 'slow')];
       player = new Player();
     }

@@ -1,5 +1,7 @@
 "use strict";
 
+let player, allEnemies; // these variables get defined when gameReset() is called in engine.js
+
 // Enemies our player must avoid
 function Enemy(rowNumber, speed) {
     this.rowNumber = rowNumber; // which of 3 rows enemy will appear on
@@ -81,12 +83,20 @@ function Player() {
    }
  };
 
+ Player.prototype.checkWin = function() {
+   if (this.y<35) {
+     return true;
+   } else {
+     return false;
+   }
+ };
 
-// Instantiate your objects.
-// Place all enemy objects in an array called allEnemies - you can add enemies to this
-// Place the player object in a variable called player
-let allEnemies = [new Enemy(1, 'slow'), new Enemy(1, 'fast'), new Enemy(2, 'medium'), new Enemy(2, 'slow'), new Enemy(3, 'fast'), new Enemy(3, 'slow')]; // if you change these you will also have to change in reset() method
-let player = new Player();
+
+// // Instantiate your objects.
+// // Place all enemy objects in an array called allEnemies - you can add enemies to this
+// // Place the player object in a variable called player
+// let allEnemies; // = [new Enemy(1, 'slow'), new Enemy(1, 'fast'), new Enemy(2, 'medium'), new Enemy(2, 'slow'), new Enemy(3, 'fast'), new Enemy(3, 'slow')]; // if you change these you will also have to change in reset() method
+// let player; //new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
