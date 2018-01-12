@@ -49,8 +49,9 @@ function Player() {
  };
 
  Player.prototype.checkCollisions = function(allEnemies) {
-   let self = this;
+   let self = this; // save this for use in forEach() callback function
    allEnemies.forEach(function(enemy) {
+     // if player and an enemy are in the same row and within a certain x distance apart, there is a collision and so reset the player to start position
      let sameRow = (enemy.rowNumber===1 & self.y===35) || (enemy.rowNumber===2 & self.y===130) || (enemy.rowNumber===3 & self.y===225);
      if (sameRow && Math.abs(enemy.x-self.x)<50) {
        self.reset();
@@ -58,7 +59,7 @@ function Player() {
    });
  }
 
- Player.prototype.reset = function() {
+ Player.prototype.reset = function() { // resets the player to starting position
      this.x = 202;
      this.y = 320;
  };

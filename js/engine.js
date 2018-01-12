@@ -59,7 +59,7 @@ var Engine = (function(global) {
         lastTime = now;
 
         /* Use the browser's requestAnimationFrame function to call this
-         * function again as soon as the browser is able to draw another frame.
+         * function again as soon as the browser is able to draw another frame, but only if player has not won.
          */
          if (!hasWon) {
            win.requestAnimationFrame(main);
@@ -77,13 +77,7 @@ var Engine = (function(global) {
     }
 
     /* This function is called by main (our game loop) and itself calls all
-     * of the functions which may need to update entity's data. Based on how
-     * you implement your collision detection (when two entities occupy the
-     * same space, for instance when your character should die), you may find
-     * the need to add an additional function call here. For now, we've left
-     * it commented out - you may or may not want to implement this
-     * functionality this way (you could just implement collision detection
-     * on the entities themselves within your app.js file).
+     * of the functions which may need to update entity's data.
      */
     function update(dt) {
         updateEntities(dt);
@@ -93,25 +87,6 @@ var Engine = (function(global) {
           doc.getElementById('winMessage').classList.toggle('hidden'); // make the win message and play again button visible
         }
     }
-
-    // function checkCollisions(allEnemies, player) {
-    //   allEnemies.forEach(function(enemy) {
-    //     let sameRow = (enemy.rowNumber===1 & player.y===35) || (enemy.rowNumber===2 & player.y===130) || (enemy.rowNumber===3 & player.y===225);
-    //     if (sameRow && Math.abs(enemy.x-player.x)<50) {
-    //       player.update(true);
-    //     }
-    //   });
-    // }
-
-    // function checkWin(player) { // checks to see if player has reached the water (depends on y position)
-    //   if (player.y<35) {
-    //     console.log('true');
-    //     hasWon = true;
-    //     doc.getElementById('winMessage').classList.toggle('hidden'); // make the win message and play again button visible
-    //   }
-    // }
-
-
 
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
