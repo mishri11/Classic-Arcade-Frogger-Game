@@ -1,4 +1,5 @@
 "use strict";
+
 // Enemies our player must avoid
 function Enemy(rowNumber, speed) {
     this.rowNumber = rowNumber; // which of 3 rows enemy will appear on
@@ -45,11 +46,19 @@ function Player() {
    this.y = 320;
  };
 
- Player.prototype.update = function(collision) {
-   if (collision) { // if there's a collision (boolean value) reset player to start position
+ Player.prototype.checkCollisions = function(allEnemies) {
+   let self = this;
+   allEnemies.forEach(function(enemy) {
+     let sameRow = (enemy.rowNumber===1 & self.y===35) || (enemy.rowNumber===2 & self.y===130) || (enemy.rowNumber===3 & self.y===225);
+     if (sameRow && Math.abs(enemy.x-self.x)<50) {
+       self.reset();
+     }
+   });
+ }
+
+ Player.prototype.reset = function() {
      this.x = 202;
      this.y = 320;
-   }
  };
 
  Player.prototype.render = function() {

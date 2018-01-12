@@ -87,18 +87,18 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        checkCollisions(allEnemies, player);
+        player.checkCollisions(allEnemies);
         checkWin(player);
     }
 
-    function checkCollisions(allEnemies, player) {
-      allEnemies.forEach(function(enemy) {
-        let sameRow = (enemy.rowNumber===1 & player.y===35) || (enemy.rowNumber===2 & player.y===130) || (enemy.rowNumber===3 & player.y===225);
-        if (sameRow && Math.abs(enemy.x-player.x)<50) {
-          player.update(true);
-        }
-      });
-    }
+    // function checkCollisions(allEnemies, player) {
+    //   allEnemies.forEach(function(enemy) {
+    //     let sameRow = (enemy.rowNumber===1 & player.y===35) || (enemy.rowNumber===2 & player.y===130) || (enemy.rowNumber===3 & player.y===225);
+    //     if (sameRow && Math.abs(enemy.x-player.x)<50) {
+    //       player.update(true);
+    //     }
+    //   });
+    // }
 
     function checkWin(player) { // checks to see if player has reached the water (depends on y position)
       if (player.y<35) {
@@ -121,7 +121,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        player.update(false);
+        // player.update(false);
     }
 
     /* This function initially draws the "game level", it will then call
