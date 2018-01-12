@@ -160,9 +160,7 @@ var Engine = (function(global) {
         player.render();
     }
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
+    /* This function instantiates the player and enemy objects. It's only called once by the init() method.
      */
     function gameReset() {
       allEnemies = [new Enemy(1, 'slow'), new Enemy(1, 'fast'), new Enemy(2, 'medium'), new Enemy(2, 'slow'), new Enemy(3, 'fast'), new Enemy(3, 'slow')];
