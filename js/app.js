@@ -69,17 +69,14 @@ function Player() {
  };
 
  Player.prototype.handleInput = function(key) {
-   let topEdge = this.y <=10; // these logical statements are just checking to see if player is on an edge
-   let rightEdge = this.x===404;
-   let bottomEdge = this.y>=400;
-   let leftEdge = this.x===0;
-   if (key==='left' && !leftEdge) { // only update player locations on keypress if player not on an edge
+  // only update player locations on keypress if player not on an edge
+   if (key==='left' && !(this.x===0)) { // if player is not on left edge, move left by subtracting from x
        this.x = this.x - 101;
-   } else if (key==='right' && !rightEdge) {
+   } else if (key==='right' && !(this.x===404)) { // if player is not on right edge, move right
      this.x = this.x + 101;
-   } else if (key==='up' && !topEdge) {
+   } else if (key==='up' && !(this.y <=10)) { // if player is not on top edge, move up
      this.y = this.y - 95;
-   } else if (key === 'down' && !bottomEdge) { // down
+   } else if (key === 'down' && !(this.y>=400)) { // if player is not on bottom edge, move down
      this.y = this.y + 95;
    }
  };
