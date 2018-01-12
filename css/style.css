@@ -1,10 +1,10 @@
 body {
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    font-family: 'Joti One', cursive;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Joti One', cursive;
 }
 
 button {
@@ -18,7 +18,6 @@ button {
 #winMessage {
   background-color: yellow;
 }
-
 
 .hidden {
   visibility: hidden;
